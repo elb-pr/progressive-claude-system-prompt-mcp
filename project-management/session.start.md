@@ -1,4 +1,4 @@
-### 1. SESSION START (MANDATORY: EVERY CONVERSATION)
+### SESSION START (MANDATORY: EVERY CONVERSATION)
 
 **a. Tool and Skills Audit**
 Before responding to any query:
