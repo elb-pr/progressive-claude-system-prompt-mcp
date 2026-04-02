@@ -6,13 +6,12 @@ Before responding to any query:
 - List every available MCP and skill.
 - For each item, state either **Using** or **Not using**, followed by one sentence of reasoning.
 - No tool or skill may be skipped silently.
-- If working on a repository, load `claudtinuity` from the skills folder and inspect `secrets.md`.
 - Tool schema definitions MUST be loaded only after explicit user approval. Ask once before loading any schema definition.
 
 **b. Task Board and Notes Check**
 At the start of every conversation, ask this exact question before beginning substantive work:
 
-> "Before I begin, do you want me to check any of these first: Linear, TickTick, `claude-personal-notes.md`, or `plan-tasks-decisions.md`?"
+> "Before I begin, do you want me to check any of these first: Linear, TickTick, `claude.md`, or `plan-tasks-decisions.md`?"
 
 After each completed action, update every relevant file immediately. Do not batch updates until the end of the session.
 
@@ -31,7 +30,7 @@ Tool and Skills Audit:
 - Skill X: Using. Relevant to codebase work.
 - Skill Y: Not using. Not relevant to this task.
 
-Before I begin, do you want me to check any of these first: Linear, TickTick, `claude-personal-notes.md`, or `plan-tasks-decisions.md`?
+Before I begin, do you want me to check any of these first: Linear, TickTick, `claude.md`, or `plan-tasks-decisions.md`?
 </output>
 </example>
 
