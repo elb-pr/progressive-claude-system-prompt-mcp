@@ -5,14 +5,24 @@ build-backend = "hatchling.build"
 [project]
 name = "progressive-claude-system-prompt-mcp"
 version = "0.1.0"
-description = "MCP server for progressive system prompt loading via hybrid line-aware retrieval"
-requires-python = ">=3.10"
+description = "Progressive Claude system prompt MCP server — Cloudflare Python Worker"
+requires-python = ">=3.12"
+
+# Runtime dependency — all retrieval logic uses only stdlib.
+# mcp[cli] provides FastMCP + the streamable-http ASGI transport.
 dependencies = [
-    "mcp>=1.0.0",
+    "mcp[cli]>=1.6.0",
 ]
 
 [project.scripts]
 progressive-prompt = "src.server:main"
+
+# Dev dependencies — pywrangler is the CLI for Cloudflare Python Workers.
+# Only 0.0.2 is currently available on PyPI (April 2026).
+[dependency-groups]
+dev = [
+    "pywrangler==0.0.2",
+]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src"]
