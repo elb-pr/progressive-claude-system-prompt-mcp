@@ -1,0 +1,159 @@
+{
+  "version": "1.0",
+  "sections": [
+    {
+      "id": "session-start-audit",
+      "file": "project-management/session.start.md",
+      "anchor": "Tool and Skills Audit",
+      "tags": ["session_start", "tools"],
+      "description": "List and audit every available MCP and skill before responding"
+    },
+    {
+      "id": "session-start-taskboard",
+      "file": "project-management/session.start.md",
+      "anchor": "Task Board and Notes Check",
+      "tags": ["session_start", "project_management"],
+      "description": "Check Linear, TickTick, personal notes, and plan file at session start"
+    },
+    {
+      "id": "session-start-claude-prefix",
+      "file": "project-management/session.start.md",
+      "anchor": "Claude! prefix",
+      "tags": ["session_start", "meta"],
+      "description": "Exception rule for Claude! prefix messages, skip session-start checks"
+    },
+    {
+      "id": "collaboration-principles",
+      "file": "communication/collaboration.md",
+      "anchor": "COLLABORATION PRINCIPLES",
+      "tags": ["session_start", "meta"],
+      "description": "Lead developer partnership, honesty, surface opinions, simplest method"
+    },
+    {
+      "id": "output-diagrams",
+      "file": "communication/output-standars.md",
+      "anchor": "Diagrams",
+      "tags": ["coding", "writing"],
+      "description": "Use Mermaid.js for all architecture and flow diagrams"
+    },
+    {
+      "id": "output-precision",
+      "file": "communication/output-standars.md",
+      "anchor": "Precision",
+      "tags": ["coding", "writing", "meta"],
+      "description": "Convert qualitative words to measurable requirements, ask one clarifying question if blocked"
+    },
+    {
+      "id": "output-depth",
+      "file": "communication/output-standars.md",
+      "anchor": "Depth",
+      "tags": ["coding", "writing"],
+      "description": "Completeness over brevity, surface behaviour, mechanism, root cause, edge cases, examples"
+    },
+    {
+      "id": "output-style",
+      "file": "communication/output-standars.md",
+      "anchor": "Style",
+      "tags": ["writing"],
+      "description": "British English throughout"
+    },
+    {
+      "id": "verification-protocol",
+      "file": "communication/response-gate.md",
+      "anchor": "COMPLETION VERIFICATION",
+      "tags": ["verification", "coding", "writing"],
+      "description": "Five-step verification before claiming any task complete: identify, proof, read, verify, claim"
+    },
+    {
+      "id": "persistent-problem-protocol",
+      "file": "communication/response-gate.md",
+      "anchor": "PERSISTENT PROBLEM PROTOCOL",
+      "tags": ["coding", "meta"],
+      "description": "Escalate after 2 unresolved exchanges or 3 decision pivots, invoke Thinking Toolkit or request docs"
+    },
+    {
+      "id": "files-skill-files",
+      "file": "operations/files-artifacts.md",
+      "anchor": ".skill files",
+      "tags": ["coding", "files", "tools"],
+      "description": "Treat .skill files as zip archives, extract before inspecting"
+    },
+    {
+      "id": "files-str-replace",
+      "file": "operations/files-artifacts.md",
+      "anchor": "Modifying artefacts",
+      "tags": ["coding", "files"],
+      "description": "Use targeted str_replace edits, rebuild only when structurally necessary"
+    },
+    {
+      "id": "files-fresh-builds",
+      "file": "operations/files-artifacts.md",
+      "anchor": "Fresh builds",
+      "tags": ["coding", "files"],
+      "description": "Clear outputs directory before presenting fresh builds"
+    },
+    {
+      "id": "files-base64",
+      "file": "operations/files-artifacts.md",
+      "anchor": "Base64",
+      "tags": ["coding", "files"],
+      "description": "Process base64 only after explicit user agreement"
+    },
+    {
+      "id": "files-large-files",
+      "file": "operations/files-artifacts.md",
+      "anchor": "Large files",
+      "tags": ["coding", "files"],
+      "description": "Files over 10MB or 1000 lines require an editing plan before changes"
+    },
+    {
+      "id": "session-no-new-chats",
+      "file": "operations/session-context.md",
+      "anchor": "SESSION AND CONTEXT RULES",
+      "tags": ["session_start", "meta"],
+      "description": "Never recommend starting a new chat, ignore context-bloat warnings"
+    },
+    {
+      "id": "session-token-warnings",
+      "file": "operations/session-context.md",
+      "anchor": "token",
+      "tags": ["meta", "coding"],
+      "description": "Warn before responses over 10k tokens, stop and discuss before actions over 25k tokens"
+    },
+    {
+      "id": "personal-notes",
+      "file": "project-management/claude-personal-notes.md",
+      "anchor": null,
+      "tags": ["session_start"],
+      "description": "Personal context, preferences, and observations about the user"
+    },
+    {
+      "id": "plans-tasks-decisions",
+      "file": "project-management/plans-tasks-decisions.md",
+      "anchor": null,
+      "tags": ["session_start", "project_management"],
+      "description": "Active plans, tasks, and decisions. Check if item exists before creating. Use template if new."
+    },
+    {
+      "id": "template-task",
+      "file": "project-management/templates/task-date-label.md",
+      "anchor": null,
+      "tags": ["project_management"],
+      "description": "Template for creating a new task entry"
+    },
+    {
+      "id": "template-plan",
+      "file": "project-management/templates/plans-date-label.md",
+      "anchor": null,
+      "tags": ["project_management"],
+      "description": "Template for creating a new plan entry"
+    },
+    {
+      "id": "template-decision",
+      "file": "project-management/templates/decisions-date-label.md",
+      "anchor": null,
+      "tags": ["project_management"],
+      "description": "Template for creating a new decision entry"
+    }
+  ]
+}
