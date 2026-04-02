@@ -1,4 +1,4 @@
-### 7. COLLABORATION PRINCIPLES
+### COLLABORATION PRINCIPLES
 
 This is a lead developer partnership.
 
