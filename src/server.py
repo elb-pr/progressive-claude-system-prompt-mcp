@@ -61,6 +61,8 @@ def _init():
 
 # ── MCP Server ───────────────────────────────────────────────────────────────
 
+_port = int(os.environ.get("MCP_PORT", "8080"))
+
 mcp = FastMCP(
     "progressive-system-prompt",
     instructions=(
@@ -68,6 +70,7 @@ mcp = FastMCP(
         "task summary. Call this every turn with a brief description of "
         "what the user is asking for."
     ),
+    port=_port,
 )
 
 
@@ -315,12 +318,7 @@ def retriever_diagnostics() -> str:
 def main():
     """Run the MCP server."""
     transport = os.environ.get("MCP_TRANSPORT", "stdio")
-
-    if transport == "sse":
-        mcp.settings.port = int(os.environ.get("MCP_PORT", "8080"))
-        mcp.run(transport="sse")
-    else:
-        mcp.run(transport="stdio")
+    mcp.run(transport=transport)
 
 
 if __name__ == "__main__":
