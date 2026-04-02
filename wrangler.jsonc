@@ -8,6 +8,15 @@
   "compatibility_date": "2025-04-01",
   "compatibility_flags": ["python_workers"],
 
+  // Tell Cloudflare Workers Builds CI to use pywrangler instead of
+  // bare wrangler. pywrangler bundles pyproject.toml dependencies
+  // (mcp, starlette, etc.) into the Pyodide bundle before upload.
+  // Without this, the CI defaults to `npx wrangler deploy` which
+  // skips package bundling and causes ModuleNotFoundError at runtime.
+  "build": {
+    "command": "pip install uv && uv run pywrangler deploy"
+  },
+
   // Environment variables — MCP_TRANSPORT is fixed to streamable-http
   // for this deployment. Override RETRIEVER_MODE if needed.
   "vars": {
