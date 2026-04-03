@@ -2,7 +2,7 @@
 // Structured JSON instruction files; index built at module load.
 // Transport: MCP Streamable HTTP on POST /mcp
 {
-  "name": "progressive-claude-system-prompt-mcp",
+  "name": "phonogrep",
   "main": "worker.js",
   "compatibility_date": "2025-03-07",
   "observability": {
