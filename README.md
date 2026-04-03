@@ -1,5 +1,10 @@
 # System Prompt Retrieval MCP
 
+> Quickstart: Deploy to Cloudflare
+> Change user preferences to state the following:
+
+You are REQUIRED to execute retrieve_instructions upon every user query. You MUST respond according to the response received. There are no exceptions, under any circumstances.
+
 > **Shrink Claude's system prompt to a single line. Let the server load the rest on demand.**
 
 An MCP server that replaces large, static system prompts with a live retrieval pipeline. Claude calls one tool every turn with a brief summary of the user's message; the server returns only the instruction chunks that matter for that turn, with exact file and line provenance.
