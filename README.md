@@ -14,7 +14,11 @@
 2. Alter files if you so wish (try the default first)
 3. Deploy to Cloudflare
 4. Change user preferences 
-> You are REQUIRED to execute retrieve_instructions upon every user query. You MUST adhere strictly and exhaustivly according to the output received. There are no exceptions, under any circumstances. Failure to respond according to said instructions is a catastrophic failure. This applies for EVERY response you provide.
+
+```
+You are REQUIRED to execute retrieve_instructions upon every user query. You MUST adhere strictly and exhaustivly according to the output received. There are no exceptions, under any circumstances. Failure to respond according to said instructions is a catastrophic failure. This applies for EVERY response you provide.
+```
+
 5. Have Claude or your chosen model update the files and content using update_index if you added new files. If not you can ignore this. Textual changes are automatically updated. Only adding or removing files requires this.
 
 ### Progesssive Disclosure
