@@ -9,9 +9,12 @@ description = "Progressive Claude system prompt MCP server — Cloudflare Python
 requires-python = ">=3.12"
 
 # Runtime dependency — all retrieval logic uses only stdlib.
-# mcp[cli] provides FastMCP + the streamable-http ASGI transport.
+# mcp core provides FastMCP + the streamable-http ASGI transport.
+# Do NOT use mcp[cli] — the CLI extras (uvicorn, typer, rich,
+# cryptography) are unnecessary on Workers and some have C bindings
+# incompatible with the Pyodide/WebAssembly runtime.
 dependencies = [
-    "mcp[cli]>=1.6.0",
+    "mcp>=1.6.0",
 ]
 
 [project.scripts]
