@@ -19,7 +19,8 @@
 
 ### Progesssive Disclosure
 
-You can essentially now have a system prompt of any size you like. Your could inline skills, entire books. Anything really. 
+You can essentially now have a system prompt of any size you like.
+Skills, entire books, reference files. Anything really. 
 
 Every time you send a message, Claude runs your query through the server, it returns only the portion of instructions relevent to the current message.
 
