@@ -1,14 +1,3 @@
-"""
-Progressive Claude System Prompt — MCP Server
-
-Transports:
-  stdio            — local MCP / Claude Desktop (default)
-  streamable-http  — Cloudflare Python Workers remote MCP (POST /mcp)
-
-NOTE: When running on Cloudflare Python Workers (Pyodide), all imports
-MUST be absolute. Relative imports (from .module import ...) are not
-supported in the flat Pyodide module scope.
-"""
 
 from __future__ import annotations
 
