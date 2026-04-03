@@ -1,4 +1,4 @@
-# Claude Progressive Instruction Tools
+# System Prompt Retrieval MCP
 
 > **Shrink Claude's system prompt to a single line. Let the server load the rest on demand.**
 
