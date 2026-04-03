@@ -1,6 +1,6 @@
-# System Prompt Retrieval MCP
+# System Prompt Retrieval Remote MCP server
 
-## System Prompts or Otherwise - Remote HTTP.
+## Cloudflare Worker for your system prompts or otherwise
 
 You can essentially now have a system prompt of any size you like. Your could inline skills, entire books. Anything really. 
 
