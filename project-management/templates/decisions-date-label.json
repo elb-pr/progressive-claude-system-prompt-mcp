@@ -1,0 +1,11 @@
+[
+  {
+    "id": "template-decision",
+    "type": "general",
+    "tags": ["project_management"],
+    "summary": "Template for logging a decision with context, chosen option, rationale, and alternatives considered.",
+    "keywords": ["alternatives", "chosen", "context", "date", "decision", "rationale", "rejected", "title"],
+    "heading": "Decision template",
+    "definition": "# Decisions\n\n### DEC-001: [Short title]\n**Date:** YYYY-MM-DD\n**Context:** Why the decision was needed.\n**Decision:** What was chosen.\n**Rationale:** Why this option was chosen.\n**Alternatives considered:** What was rejected and why."
+  }
+]

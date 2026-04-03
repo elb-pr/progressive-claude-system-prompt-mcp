@@ -1,0 +1,11 @@
+[
+  {
+    "id": "template-plan",
+    "type": "procedure",
+    "tags": ["project_management"],
+    "summary": "Template for creating a new plan with status, goal, context, scope, steps, decisions, and outcome.",
+    "keywords": ["active", "blocked", "complete", "context", "decisions", "draft", "goal", "label", "outcome", "scope", "status", "steps"],
+    "heading": "Plan template",
+    "definition": "# Plan: [Label]\n\n**Created:** YYYY-MM-DD\n**Status:** draft | active | blocked | complete | abandoned\n**Goal:** One sentence describing what done looks like.\n\n## Context\n\nWhy this plan exists. What triggered it.\n\n## Scope\n\n**In:** What this plan covers.\n**Out:** What this plan explicitly does not cover.\n\n## Steps\n\n1. [ ] Step one\n2. [ ] Step two\n3. [ ] Step three\n\n## Decisions Made\n\n- DEC-XXX: [Short title] (see decisions/decisions.md)\n\n## Outcome\n\n*Fill this in on completion or abandonment.*\nWhat happened. What shipped. What was learned."
+  }
+]

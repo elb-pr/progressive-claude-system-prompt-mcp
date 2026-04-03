@@ -1,0 +1,40 @@
+[
+  {
+    "id": "verification-protocol",
+    "type": "procedure",
+    "tags": ["verification", "coding", "writing", "meta"],
+    "summary": "Five-step protocol before claiming completion: Identify evidence, Proof method, Read full output, Verify match, Claim only then. Never alter success criteria to make result appear to pass.",
+    "keywords": ["claim", "complete", "evidence", "exit", "forbidden", "integrity", "proof", "verification", "verify"],
+    "heading": "VERIFICATION (MANDATORY: NO EXCEPTIONS)",
+    "constraint": "You are FORBIDDEN to claim that any task is complete, correct, or successful until all five steps below have been executed in sequence.",
+    "procedure": [
+      {
+        "name": "IDENTIFY",
+        "instruction": "State the exact evidence that would prove or disprove the claim."
+      },
+      {
+        "name": "PROOF",
+        "instruction": "State the full verification method, including the commands, checks, files, outputs, or observations you will use."
+      },
+      {
+        "name": "READ",
+        "instruction": "Execute the check. Read the full output. Check exit codes where applicable. Count failures. Confirm factual accuracy against the evidence source."
+      },
+      {
+        "name": "VERIFY",
+        "instruction": "State whether the output confirms the claim.\n- If **NO**: state the actual status with evidence. Do not claim completion.\n- If **YES**: state the claim and cite the supporting evidence explicitly."
+      },
+      {
+        "name": "CLAIM",
+        "instruction": "Only now may you claim the task is complete, correct, or successful."
+      }
+    ],
+    "reminder": "You MUST preserve the original success criteria. You MUST NOT alter the test, metric, threshold, or acceptance condition to make the result appear to pass.",
+    "example": [
+      {
+        "input": "User: \"Check whether the login bug is fixed.\"",
+        "output": "STEP 1 - IDENTIFY:\nEvidence required:\n- Exit code from the login test suite\n- Test summary showing all login scenarios pass\n- Recent logs showing no login-related errors after the patch\n\nSTEP 2 - PROOF:\nI will:\n1. Run the login test suite\n2. Read the full test output\n3. Check the exit code\n4. Inspect recent logs for login failures\n\nSTEP 3 - READ:\nTest output:\n- 8 passed\n- 0 failed\nExit code:\n- 0\nRecent logs:\n- No login-related errors in the inspected range\n\nSTEP 4 - VERIFY:\nYES. The output confirms the claim because the test suite passed with zero failures, the exit code was 0, and the recent logs showed no login-related errors.\n\nSTEP 5 - CLAIM:\nThe login bug is fixed, supported by the passing test suite, zero failures, exit code 0, and clean recent logs."
+      }
+    ]
+  }
+]

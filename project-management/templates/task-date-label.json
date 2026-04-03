@@ -1,0 +1,11 @@
+[
+  {
+    "id": "template-task",
+    "type": "general",
+    "tags": ["project_management"],
+    "summary": "Template for creating a new task entry with Active and Done sections.",
+    "keywords": ["active", "done", "linear", "plan-label", "priority", "task", "ticktick"],
+    "heading": "Task template",
+    "definition": "# Tasks\n\n## Active\n\n- [ ] Task description | plan: [plan-label] | priority: high\n- [ ] Task description | plan: [plan-label] | priority: med\n- [ ] Task description | priority: low\n- [ ] Task linked to Linear | plan: [plan-label] | linear: ELB-XXX\n- [ ] Task linked to TickTick | plan: [plan-label] | ticktick: true\n\n## Done\n\n- [x] Completed task description | plan: [plan-label] | done: YYYY-MM-DD"
+  }
+]

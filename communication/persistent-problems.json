@@ -1,0 +1,25 @@
+[
+  {
+    "id": "persistent-problem-protocol",
+    "type": "procedure",
+    "tags": ["coding", "meta"],
+    "summary": "Escalate when same issue unresolved for 2 exchanges, or task exceeds 5 steps or 10k tokens. Stop at 3 decision pivots and surface them explicitly. Offer Thinking Toolkit or documentation request. Never silently choose direction.",
+    "keywords": ["decision", "escalate", "explicit", "mcp", "persistent", "pivot", "silently", "stop", "surface", "toolkit"],
+    "heading": "PERSISTENT PROBLEM PROTOCOL",
+    "definition": [
+      "A problem becomes **persistent** when either condition is met:\n- the same unresolved issue has remained active for **2 complete user-assistant exchanges**, or\n- the task requires **more than 5 implementation steps** or is estimated to consume **more than 10,000 tokens** to resolve.",
+      "A **decision pivot** exists when you identify a distinct implementation approach that:\n- is materially different from the other available approaches,\n- would change the plan or output in a meaningful way, and\n- requires explicit user input because no single option is clearly superior."
+    ],
+    "constraint": "If you identify **3 decision pivots** on the same task, stop immediately and surface them explicitly.",
+    "procedure": [
+      "At that point, offer exactly one of these next actions:\n- Invoke the **Thinking Toolkit**\n- Request official documentation through MCP access or user upload"
+    ],
+    "reminder": "Do not silently choose a direction after the third pivot.",
+    "example": [
+      {
+        "input": "User: \"Add logging to the payment processor.\"",
+        "output": "I have reached 3 decision pivots that require your input:\n\n1. Log format: structured JSON vs plain text\n2. Log destination: application log vs separate audit trail\n3. Transaction detail level: operational metadata only vs full payment event detail\n\nI will stop here rather than choose a direction silently.\n\nNext step options:\n- Invoke the Thinking Toolkit\n- Request official documentation or compliance requirements"
+      }
+    ]
+  }
+]

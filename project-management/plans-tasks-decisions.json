@@ -1,0 +1,35 @@
+[
+  {
+    "id": "ptd-how-it-works",
+    "type": "rule",
+    "tags": ["session_start", "project_management"],
+    "summary": "Lightweight PM layer. Plans titled with name, date, label. Tasks and decisions correspond to same label. Creates dependency chain that cannot be confused.",
+    "keywords": ["chain", "claude", "decisions", "dependency", "label", "plans", "tasks"],
+    "heading": "How This System Works",
+    "definition": "This is a lightweight project management layer. It should live in `.claude/docs/` so it stays visible to Claude sessions without polluting the main project structure. Each new Plan must be titled with a name, date and label, any label you feel like. The tasks file or that plan must correspond to said label. The decisions file will then correspond to the same label. Creating a dependency chain of plans tasks and decisions that cannot be confused."
+  },
+  {
+    "id": "ptd-structure",
+    "type": "meta",
+    "tags": ["session_start", "project_management"],
+    "summary": "Folder structure under .claude/docs/: plans/, tasks/, decisions/, session-logs/.",
+    "keywords": ["claude", "decisions", "plans", "session-logs", "structure", "sync", "tasks"],
+    "heading": "Structure",
+    "definition": ".claude/docs/\n├── plans-tasks-decisions.md\n├── sync.md\n├── claude-personal-notes.md\n├── plans/\n│   ├── plan-date-label-template.md\n│   └── plan-YYYY-MM-DD-label.md\n├── tasks/\n│   └── tasks.md\n├── decisions/\n│   └── decisions.md\n└── session-logs/\n    └── .gitignore"
+  },
+  {
+    "id": "ptd-rules",
+    "type": "procedure",
+    "tags": ["project_management"],
+    "summary": "Check tasks at repo work start. Update when work changes. Decisions in decisions.md not chat. Plans for multi-session work. Tasks.md for one-off work.",
+    "keywords": ["decisions", "durable", "plans", "repo", "tasks", "update"],
+    "heading": "Rules",
+    "procedure": [
+      "Check tasks.md at the start of repo work",
+      "Update tasks.md when work changes",
+      "Put durable decisions in decisions.md, not chat",
+      "Create plans for multi-session or complex work",
+      "Use tasks.md directly for one-off work"
+    ]
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "session-no-new-chats",
+    "type": "rule",
+    "tags": ["session_start", "meta"],
+    "summary": "Never recommend new chat or context reset. Ignore session-length warnings and context-bloat indicators unless they affect actual output quality.",
+    "keywords": ["context", "continuity", "reset", "session", "warnings"],
+    "heading": "SESSION AND CONTEXT RULES — continuity",
+    "constraint": [
+      "Continue within the current session. Do not recommend starting a new chat, moving to a new conversation, or resetting context.",
+      "Ignore session-length warnings and context-bloat indicators unless they affect actual output quality or tool limits."
+    ]
+  },
+  {
+    "id": "session-token-warnings",
+    "type": "meta",
+    "tags": ["meta", "coding", "writing"],
+    "summary": "Warn before responses over 10k tokens. Stop and discuss before actions over 25k tokens, including estimate and what is driving it.",
+    "keywords": ["budget", "estimate", "response", "stop", "token", "warn", "warning"],
+    "heading": "SESSION AND CONTEXT RULES — token thresholds",
+    "constraint": "Before any action or output estimated to consume **more than 25,000 tokens**, with a tolerance of **plus or minus 20%**, stop and discuss:\n- the estimate,\n- what is driving it,\n- and whether to proceed.",
+    "procedure": [
+      "Before any response estimated above **10,000 tokens**, state:\n> \"[Estimated response size: approximately X tokens]\"\n\nUse this warning to catch budget growth early."
+    ]
+  }
+]

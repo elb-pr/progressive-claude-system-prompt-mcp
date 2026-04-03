@@ -1,90 +1,58 @@
 // System Prompt Retrieval — MCP Worker
-// Cloudflare Worker — markdown files bundled as text via Wrangler imports.
+// Cloudflare Worker — structured JSON instruction files, no hardcoded content.
 // HybridRetriever: BM25 + TF-IDF cosine + RRF/convex fusion + tag boosting
 // QueryParser: verb/object extraction + keyword→tag inference
 // Transport: MCP Streamable HTTP on POST /mcp
 
-// ── Imports ───────────────────────────────────────────────────────────────────
-import INDEX        from './index.json';
+// ── JSON imports ──────────────────────────────────────────────────────────────
 import KEYWORD_DATA from './keywords.json';
 
-import _collaboration        from './communication/collaboration.md';
-import _outputStandards      from './communication/output-standards.md';
-import _persistentProblems   from './communication/persistent-problems.md';
-import _responseGate         from './communication/response-gate.md';
-import _filesArtifacts       from './operations/files-artifacts.md';
-import _sessionContext        from './operations/session-context.md';
-import _claudePersonalNotes  from './project-management/claude-personal-notes.md';
-import _plansTasksDecisions  from './project-management/plans-tasks-decisions.md';
-import _sessionStart         from './project-management/session-start.md';
-import _decisionsTemplate    from './project-management/templates/decisions-date-label.md';
-import _plansTemplate        from './project-management/templates/plans-date-label.md';
-import _taskTemplate         from './project-management/templates/task-date-label.md';
+import _collaboration       from './communication/collaboration.json';
+import _outputStandards     from './communication/output-standards.json';
+import _persistentProblems  from './communication/persistent-problems.json';
+import _responseGate        from './communication/response-gate.json';
+import _filesArtifacts      from './operations/files-artifacts.json';
+import _sessionContext       from './operations/session-context.json';
+import _claudePersonalNotes from './project-management/claude-personal-notes.json';
+import _plansTasksDecisions from './project-management/plans-tasks-decisions.json';
+import _sessionStart        from './project-management/session-start.json';
+import _decisionsTemplate   from './project-management/templates/decisions-date-label.json';
+import _plansTemplate       from './project-management/templates/plans-date-label.json';
+import _taskTemplate        from './project-management/templates/task-date-label.json';
 
-// ── File registry ─────────────────────────────────────────────────────────────
-const FILES = {
-  'communication/collaboration.md':                        _collaboration,
-  'communication/output-standards.md':                    _outputStandards,
-  'communication/persistent-problems.md':                 _persistentProblems,
-  'communication/response-gate.md':                       _responseGate,
-  'operations/files-artifacts.md':                        _filesArtifacts,
-  'operations/session-context.md':                        _sessionContext,
-  'project-management/claude-personal-notes.md':          _claudePersonalNotes,
-  'project-management/plans-tasks-decisions.md':          _plansTasksDecisions,
-  'project-management/session-start.md':                  _sessionStart,
-  'project-management/templates/decisions-date-label.md': _decisionsTemplate,
-  'project-management/templates/plans-date-label.md':     _plansTemplate,
-  'project-management/templates/task-date-label.md':      _taskTemplate,
-};
+// ── Build CHUNKS by flattening all imported instruction arrays ─────────────────
+// Each JSON file is an array of chunk objects with structured fields.
+// BM25/TF-IDF tokenises over summary + keywords + all string values in the chunk.
 
-// ── Chunk builders (ported from indexer.py) ───────────────────────────────────
-
-function extractText(content, lineStart, lineEnd) {
-  const lines = content.split('\n');
-  return lines.slice(lineStart - 1, lineEnd).join('\n').trim();
+function extractStrings(obj) {
+  if (typeof obj === 'string') return [obj];
+  if (Array.isArray(obj)) return obj.flatMap(extractStrings);
+  if (obj && typeof obj === 'object') return Object.values(obj).flatMap(extractStrings);
+  return [];
 }
 
-function extractKeywords(text) {
-  const kw = new Set();
-  // Bold: **term**
-  for (const m of text.matchAll(/\*\*([^*]+)\*\*/g))
-    for (const w of m[1].split(/\s+/)) { const t = w.trim().toLowerCase(); if (t.length > 2) kw.add(t); }
-  // Code spans: `term`
-  for (const m of text.matchAll(/`([^`]+)`/g))
-    kw.add(m[1].trim().toLowerCase());
-  // ALL-CAPS acronyms / emphasis
-  for (const m of text.matchAll(/\b[A-Z]{2,}\b/g))
-    kw.add(m[0].toLowerCase());
-  return [...kw].sort().slice(0, 15);
-}
+const CHUNKS = [
+  ..._collaboration,
+  ..._outputStandards,
+  ..._persistentProblems,
+  ..._responseGate,
+  ..._filesArtifacts,
+  ..._sessionContext,
+  ..._claudePersonalNotes,
+  ..._plansTasksDecisions,
+  ..._sessionStart,
+  ..._decisionsTemplate,
+  ..._plansTemplate,
+  ..._taskTemplate,
+].map(chunk => ({
+  ...chunk,
+  // Synthesise a flat text field for BM25/TF-IDF from all string values
+  text: extractStrings(chunk).join(' '),
+  // Expose ls/le as 0 (line ranges no longer apply — content is in the JSON)
+  ls: 0, le: 0,
+}));
 
-function inferType(tags, text) {
-  const t = text.toLowerCase();
-  if (['step ', 'protocol', 'before claiming', 'mandatory', 'five-step', 'at the start of', 'after each', 'sequence'].some(s => t.includes(s))) return 'procedure';
-  if (['forbidden', 'must ', 'never ', 'always ', 'only ', 'do not', 'cannot'].some(s => t.includes(s))) return 'rule';
-  if (tags.includes('meta') || tags.includes('session_start')) return 'meta';
-  return 'general';
-}
-
-// ── Build CHUNKS from index + bundled markdown files ─────────────────────────
-const CHUNKS = INDEX.sections.map(section => {
-  const content = FILES[section.file] || '';
-  const [ls, le] = section.lines;
-  const text = extractText(content, ls, le);
-  const tags = section.tags || [];
-  return {
-    id:       section.id,
-    file:     section.file,
-    section:  section.heading,
-    ls, le, text,
-    summary:  section.description || '',
-    keywords: extractKeywords(`${text} ${section.description || ''}`),
-    tags,
-    type:     inferType(tags, text),
-  };
-});
-
-// ── Keyword categories for QueryParser tag inference ─────────────────────────
+// ── Keyword categories for QueryParser tag inference ──────────────────────────
 const KEYWORD_CATEGORIES = KEYWORD_DATA.categories;
 
 // ── Stopwords ────────────────────────────────────────────────────────────────
@@ -424,15 +392,10 @@ function handleTool(name, args) {
   }
 
   if (name === "get_instruction_lines") {
-    const chunk = CHUNKS.find(c => c.file === args.file_path && c.ls <= args.line_start && c.le >= args.line_end);
-    if (!chunk) return { error: `No chunk covers ${args.file_path} L${args.line_start}-${args.line_end}` };
-    return {
-      file: args.file_path,
-      line_start: args.line_start,
-      line_end: args.line_end,
-      total_lines_in_file: chunk.le,
-      text: chunk.text,
-    };
+    const chunk = CHUNKS.find(c => c.id === args.file_path || c.file === args.file_path);
+    if (!chunk) return { error: `No chunk found for: ${args.file_path}` };
+    const { text, ...structured } = chunk;
+    return structured;
   }
 
   if (name === "list_instruction_chunks") {

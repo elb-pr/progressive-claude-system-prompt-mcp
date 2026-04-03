@@ -1,0 +1,53 @@
+[
+  {
+    "id": "session-tool-audit",
+    "type": "rule",
+    "tags": ["session_start", "tools"],
+    "summary": "List every available MCP and skill, state Using or Not using with reasoning. Load schemas only after explicit user approval.",
+    "keywords": ["audit", "mcp", "schema", "skill", "tool"],
+    "heading": "Tool and Skills Audit",
+    "constraint": "Before responding to any query:",
+    "procedure": [
+      "List every available MCP and skill.",
+      "For each item, state either **Using** or **Not using**, followed by one sentence of reasoning.",
+      "No tool or skill may be skipped silently.",
+      "Tool schema definitions MUST be loaded only after explicit user approval. Ask once before loading any schema definition."
+    ]
+  },
+  {
+    "id": "session-taskboard-check",
+    "type": "procedure",
+    "tags": ["session_start", "project_management"],
+    "summary": "Ask whether to check Linear, TickTick, personal notes, or plan file before beginning work. Update files after each completed action.",
+    "keywords": ["claude-personal-notes.md", "linear", "plan-tasks-decisions.md", "ticktick"],
+    "heading": "Task Board and Notes Check",
+    "constraint": "At the start of every conversation, ask this exact question before beginning substantive work:",
+    "procedure": [
+      "\"Before I begin, do you want me to check any of these first: Linear, TickTick, `claude-personal-notes.md`, or `plan-tasks-decisions.md`?\"",
+      "After each completed action, update every relevant file immediately."
+    ],
+    "reminder": "Do not batch updates until the end of the session."
+  },
+  {
+    "id": "session-claude-prefix",
+    "type": "procedure",
+    "tags": ["session_start", "meta"],
+    "summary": "Claude! prefix skips session-start checks for that turn only. Two consecutive Claude! messages triggers mode confirmation prompt.",
+    "keywords": ["claude", "exception", "mode", "prefix", "protocol"],
+    "heading": "Claude! prefix exception",
+    "definition": "If the user's message begins with `Claude!`, treat that turn as a regular conversational exchange and skip the session-start checks for that turn only.",
+    "procedure": [
+      "If the next consecutive user message also begins with `Claude!`, ask: \"Would you like to continue in Claude! mode, or return to the full working protocol?\""
+    ],
+    "example": [
+      {
+        "input": "User: \"Please refactor the auth middleware.\"",
+        "output": "Tool and Skills Audit:\n- MCP A: Using. Required for repository access.\n- MCP B: Not using. No web lookup is needed.\n- Skill X: Using. Relevant to codebase work.\n- Skill Y: Not using. Not relevant to this task.\n\nBefore I begin, do you want me to check any of these first: Linear, TickTick, `claude-personal-notes.md`, or `plan-tasks-decisions.md`?"
+      },
+      {
+        "input": "Previous user message began with `Claude!`. New message: \"Claude! Explain this stack trace.\"",
+        "output": "Would you like to continue in Claude! mode, or return to the full working protocol?"
+      }
+    ]
+  }
+]

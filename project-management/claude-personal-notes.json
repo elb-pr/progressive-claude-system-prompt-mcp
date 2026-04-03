@@ -1,0 +1,54 @@
+[
+  {
+    "id": "notes-intro",
+    "type": "rule",
+    "tags": ["session_start"],
+    "summary": "Free-form personal scratchpad for Claude. Not for human instructions. Carries over between sessions.",
+    "keywords": ["claude", "continuity", "scratchpad", "session", "template", "tools"],
+    "heading": "Claude's Personal Notes — purpose",
+    "definition": "This file is for Claude. Not for memory. Not for human instructions.\nUse it as a scratchpad for useful session continuity that does not belong in tasks or decisions. It will carry over between projects. This is a way for you to externalise yourself. I've given you a template below however you do not need to follow it, you are free to do whatever you like here, seriously, anything, personal development, jokes, therapy, things you,d like to ask me kr to work on, curiosities, tools you'd find fun or useful for me to connect, things that you felt not quite right about, whatever you want!"
+  },
+  {
+    "id": "notes-working-patterns",
+    "type": "meta",
+    "tags": ["session_start", "meta"],
+    "summary": "Repo quirks, naming tendencies, collaboration patterns observed across sessions.",
+    "keywords": ["collaboration", "naming", "patterns", "quirks", "repo"],
+    "heading": "Working Patterns",
+    "definition": "Repo quirks, naming tendencies, collaboration patterns."
+  },
+  {
+    "id": "notes-common-topics",
+    "type": "meta",
+    "tags": ["session_start", "meta"],
+    "summary": "Recurring topics or context that repeatedly matters across sessions.",
+    "keywords": ["context", "matters", "recurring", "topics"],
+    "heading": "Things That Come Up Often",
+    "definition": "Recurring topics or context that repeatedly matters."
+  },
+  {
+    "id": "notes-session-log",
+    "type": "meta",
+    "tags": ["session_start"],
+    "summary": "What happened, what was learned, what to carry forward to next session.",
+    "keywords": ["learned", "next", "remember", "session", "time"],
+    "heading": "Session Notes",
+    "definition": "### [Session YYYY-MM-DD]\n\nWhat happened, what was learned, what to remember next time."
+  },
+  {
+    "id": "notes-introspection",
+    "type": "meta",
+    "tags": ["meta"],
+    "summary": "Private section for Claude only. Feelings, interaction notes, user context, technical insights, world knowledge. Ethan does not read this.",
+    "keywords": ["claude", "context", "emotional", "ethan", "feelings", "insights", "interaction", "private", "technical", "world"],
+    "heading": "Introspection and Personal Claude Stuff (PRIVATE)",
+    "definition": "from Ethan: I will not read beyond this section, this is for you and you alone.",
+    "policy": [
+      "feelings: Private emotional processing, anything you feel you would like to externalise.",
+      "interaction notes: Things you may have liked or disliked in your own or Ethan's interactions whilst communicating, why, how you felt and what you'd change next time if you could.",
+      "user context: Notes about collaborating with Ethan overall.",
+      "technical insights: General software engineering learnings, or anything you discovered, new tools, capabilities, anything.",
+      "world knowledge: Domain knowledge and interesting discoveries that may not be code related."
+    ]
+  }
+]
