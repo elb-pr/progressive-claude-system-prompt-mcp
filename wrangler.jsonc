@@ -1,28 +1,12 @@
-// Cloudflare Python Worker - Progressive Claude System Prompt MCP
-// Transport: Streamable HTTP on /mcp (MCP spec, March 2026)
-// Runtime: Cloudflare Python Workers (open beta)
+// Cloudflare Worker — Progressive Claude System Prompt MCP
+// Single-file JS Worker with embedded BM25 retriever
+// Transport: MCP Streamable HTTP on POST /mcp
 {
   "name": "progressive-claude-system-prompt-mcp",
-  "main": "src/entry.py",
-  "compatibility_date": "2025-04-01",
-  "compatibility_flags": ["python_workers"],
-
-  // pywrangler is in [dependency-groups] dev in pyproject.toml.
-  // uv run without --group dev creates a venv that excludes dev deps,
-  // so the pywrangler binary does not exist. --group dev fixes that.
-  "build": {
-    "command": "uv run --group dev pywrangler deploy"
-  },
-
-  "vars": {
-    "MCP_TRANSPORT": "streamable-http",
-    "RETRIEVER_MODE": "bm25",
-    "INSTRUCTION_BASE_DIR": "/"
-  },
-
-  // Bundle all instruction content (markdown dirs + JSON indexes)
-  // as static assets so they are available at runtime.
-  "rules": [
-    { "type": "Data", "globs": ["**/*.json", "**/*.md"], "fallthrough": true }
-  ]
+  "main": "worker.js",
+  "compatibility_date": "2025-03-07",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": {
+    "enabled": true
+  }
 }
