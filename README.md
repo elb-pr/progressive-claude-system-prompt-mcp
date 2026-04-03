@@ -1,6 +1,8 @@
-# System Prompt Retrieval Remote MCP server
+# System Prompt Retrieval 
 
-## Cloudflare Worker for your system prompts or otherwise
+- Remote MCP server via Cloudflare Workers
+
+## Progesssive Disclosure
 
 You can essentially now have a system prompt of any size you like. Your could inline skills, entire books. Anything really. 
 
