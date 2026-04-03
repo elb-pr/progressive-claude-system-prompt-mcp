@@ -17,11 +17,13 @@ dependencies = [
 [project.scripts]
 progressive-prompt = "src.server:main"
 
-# Dev dependencies — pywrangler is the CLI for Cloudflare Python Workers.
-# Only 0.0.2 is currently available on PyPI (April 2026).
+# Dev dependencies — pywrangler CLI is provided by workers-py.
+# workers-runtime-sdk provides the cloudflare.workers module for type hints.
+# https://developers.cloudflare.com/workers/languages/python/packages/
 [dependency-groups]
 dev = [
-    "pywrangler==0.0.2",
+    "workers-py",
+    "workers-runtime-sdk",
 ]
 
 [tool.hatch.build.targets.wheel]
