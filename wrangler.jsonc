@@ -1,11 +1,10 @@
-// Cloudflare Worker — Progressive Claude System Prompt MCP
-// Single-file JS Worker with embedded BM25 retriever
+// Cloudflare Worker — System Prompt Retrieval MCP
+// Single-file JS Worker with embedded BM25 + TF-IDF hybrid retriever
 // Transport: MCP Streamable HTTP on POST /mcp
 {
-  "name": "progressive-claude-system-prompt-mcp",
+  "name": "system-prompt-retrieval-mcp",
   "main": "worker.js",
   "compatibility_date": "2025-03-07",
-  "compatibility_flags": ["nodejs_compat"],
   "observability": {
     "enabled": true
   }
