@@ -2,7 +2,7 @@
 # System Prompt Retrieval 
 
 - Remote MCP server via Cloudflare Workers
-- - All instruction content lives in versioned markdown files in the repo.
+- All instruction content lives in versioned markdown files in the repo.
 - A hybrid BM25 + TF-IDF retriever with RRF fusion selects only the relevant chunks per turn.
 - Exact `line_start`/`line_end` provenance means Claude can always fetch the source if it needs more context.
 - Uses structured XML. Any content added must follow this pattern.
